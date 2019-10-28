@@ -168,6 +168,18 @@ static MouseShortcut mshortcuts[] = {
 #define MODKEY Mod1Mask
 #define TERMMOD (ControlMask|ShiftMask)
 
+
+/* scripting */
+static char *copyurlcmd[] = { "/bin/sh", "-c",
+    "sed 's/.*│//g' | tr -d '\n' | grep -aEo '(((http|https)://|www\\.)[a-zA-Z0-9.]*[:]?[a-zA-Z0-9./&%?#=_-]*)|((magnet:\\?xt=urn:btih:)[a-zA-Z0-9]*)' | uniq | sed 's/^www./http:\\/\\/www\\./g' | dmenu -i -p 'Copy which url?' -l 10 | tr -d '\n' | xclip -selection primary && notify-send \"copied url `xclip -selection primary -o`\"",
+    "externalpipe", NULL };
+
+static char *copyline[] = { "/bin/sh", "-c",
+    "dmenu_select_nonempty_line.sh | xclip -selection c && notify-send \"copied \\\"`xclip -selection c -o`\\\"\"",
+    "externalpipe", NULL };
+
+
+
 static Shortcut shortcuts[] = {
 	/* mask                 keysym          function         argument */
 	{ XK_ANY_MOD,           XK_Break,       sendbreak,       {.i =  0} },
@@ -185,6 +197,8 @@ static Shortcut shortcuts[] = {
 	{ ShiftMask,            XK_Insert,      selpaste,        {.i =  0} },
 	{ TERMMOD,              XK_Num_Lock,    numlock,         {.i =  0} },
 	{ TERMMOD,              XK_Escape,      keyboard_select, { 0 } },
+	{ MODKEY,               XK_y,           externalpipe,    {.v = copyurlcmd } },
+	{ MODKEY,               XK_l,           externalpipe,    {.v = copyline } },
 };
 
 /*
