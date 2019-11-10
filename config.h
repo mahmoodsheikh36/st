@@ -175,7 +175,7 @@ static char *copyurlcmd[] = { "/bin/sh", "-c",
     "externalpipe", NULL };
 
 static char *copyline[] = { "/bin/sh", "-c",
-    "dmenu_select_nonempty_line.sh | xclip -selection c && notify-send \"copied \\\"`xclip -selection c -o`\\\"\"",
+    "rofi_select_nonempty_line.sh | xclip -selection c",
     "externalpipe", NULL };
 
 
