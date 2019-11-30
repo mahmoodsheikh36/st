@@ -175,7 +175,7 @@ static char *copyurlcmd[] = { "/bin/sh", "-c",
     "externalpipe", NULL };
 
 static char *copyline[] = { "/bin/sh", "-c",
-    "rofi_select_nonempty_line.sh | xclip -selection c",
+    "dmenu_select_nonempty_line.sh | xclip -selection c",
     "externalpipe", NULL };
 
 
@@ -198,7 +198,7 @@ static Shortcut shortcuts[] = {
 	{ TERMMOD,              XK_Num_Lock,    numlock,         {.i =  0} },
 	{ TERMMOD,              XK_Escape,      keyboard_select, { 0 } },
 	{ MODKEY,               XK_y,           externalpipe,    {.v = copyurlcmd } },
-	{ MODKEY,               XK_l,           externalpipe,    {.v = copyline } },
+    { MODKEY,               XK_c,           externalpipe,    {.v = copyline } },
 };
 
 /*
